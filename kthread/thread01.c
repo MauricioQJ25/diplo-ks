@@ -18,3 +18,24 @@ int thread_init(void){
         }
     return 0;
 }
+
+int thread_fn(){
+    unsigned long j0, j1;
+    int delay = 60*HZ;
+    j0 = jiffies;
+    j1 = j0 + delay;
+
+    printk(KERN_INFO "In thread");
+
+    while (time_before(jiffies, j1))
+        schedule();
+
+    return 0; 
+}
+
+void thread_cleanup(void) {
+    int ret;
+    ret = kthread_stop(thread1);
+    if(!ret)
+    printk(KERN_INFO "Thread stopped");
+}
