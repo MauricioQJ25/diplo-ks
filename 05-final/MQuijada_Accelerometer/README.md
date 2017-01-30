@@ -2,6 +2,13 @@
 ##Creacion de un Driver para raspberrypi 3
 ###Dispositivo mpu3050 mediante conexión i2c
 
+Contenido de la carpeta:
+	src/ 		*Contienen el codigo fuente*
+        proyectoRedes/ 	*Contiene información relativa al proyecto de Redes*
+	imagprueba/ 	*Contiene imagenes que prueban el funcionamiento del driver*
+
+
+
 ####Resumen
 El siguiente proyecto consiste en la creación de un Driver para el dispositivo mpu3050
 mediante la conexión i2c.
