@@ -446,6 +446,10 @@ static const struct of_device_id mpu3050_of_match[] = {
 };
 MODULE_DEVICE_TABLE(of, mpu3050_of_match);
 
+/*
+ * Estructura de un driver de i2c 
+ * se puede escribir de la siguiente manera
+ */
 static struct i2c_driver mpu3050_i2c_driver = {
 	.driver	= {
 		.name	= "mpu3050",
@@ -458,16 +462,20 @@ static struct i2c_driver mpu3050_i2c_driver = {
 };
 
 //module_i2c_driver(mpu3050_i2c_driver);
+
+/*Funciones de inicio y de salida del driver*/
 static int __init mag3110_init(void)
 {
 	printk(KERN_INFO "Agregando el driver del mpu3050!\n");
 
+    /*Registro del driver, se le pasa a la función la direccion de la estructura del driver*/
 	return i2c_add_driver(&mpu3050_i2c_driver);
 }
 
 static void __exit mag3110_exit(void)
 {
 	printk(KERN_INFO "Quitando el driver mpu3050\n");
+	/*Se quita el driver*/
 	i2c_del_driver(&mpu3050_i2c_driver);
 }
 module_init(mag3110_init);
