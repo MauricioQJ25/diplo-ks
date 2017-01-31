@@ -1,4 +1,7 @@
-obj-m += mpu3050.o
+obj-m += mpu_driver.o
+obj-m += mpu_client.o
+
+
 
 all:
 #	Para compilar el módulo de kernel en PC con Ubuntu:
