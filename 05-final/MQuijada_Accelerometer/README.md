@@ -1,3 +1,4 @@
+ejecutar final en raspberrypi
 #Proyecto final 
 ##Creacion de un Driver para raspberrypi 3
 ###Dispositivo mpu3050 mediante conexión i2c
