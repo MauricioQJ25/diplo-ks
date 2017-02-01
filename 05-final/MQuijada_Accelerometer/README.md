@@ -97,7 +97,14 @@ El cual lo podemos encontrar en la carpeta Documents.<br />
 En un archivo de cabecera se definen, los que usé para escribir el driver.<br />
 
 ###Pruebas Realizadas
+####log del sistemma
+![alt tag](https://github.com/MauricioQJ25/diplo-ks/blob/Pfinal/05-final/MQuijada_Accelerometer/ImagenesProyecto/logdriverworking.png)
 
+####Modinfo
+![alt tag](https://github.com/MauricioQJ25/diplo-ks/blob/Pfinal/05-final/MQuijada_Accelerometer/ImagenesProyecto/modinfo.png)
+
+####rmmoddriver
+![alt tag](https://github.com/MauricioQJ25/diplo-ks/blob/Pfinal/05-final/MQuijada_Accelerometer/ImagenesProyecto/rmmoddriver.png)
 ###Referencias
 
 Coloco todas las referencias que me fueron útiles, pero en general todo se puede encontrar en la documentación del Kernel.<br />
