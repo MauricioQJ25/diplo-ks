@@ -1,11 +1,24 @@
+/*
+ * Muy importante, está localizado en la direccion de memoria de I2C 0x68
+ * Hacer pruebas de detección antes de correr.
+ *
+ *
+ * Driver mpu6050, 
+ * 
+ * Lee la aceleración, la orientación y la temperatura funciones de lectura
+ *
+ * Contiene una cola de trabajo
+ * En la función probe se registra el driver
+ * En la función remove quitamos el registro
+*/
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/init.h>
-#include <linux/slab.h>
-#include <linux/mutex.h>
-#include <linux/workqueue.h>
+#include <linux/slab.h>/*memory management*/
+#include <linux/mutex.h>/*access memory*/
+#include <linux/workqueue.h>/*cola de trabajo*/
 #include <linux/i2c.h>
-#include <linux/types.h>
+#include <linux/types.h> /*0x*/
 
 #include "log.h"
 #include "mpu6050_reg.h"
@@ -33,6 +46,7 @@ struct temp_sensor {
     u16 value;
 };
 
+/*estructura para el stand by o despertar el dispositivo*/
 struct pwr_mgmt {
     int reset;
     int sleep;
@@ -61,21 +75,8 @@ enum {
     RANGE,
     LSB
 };
-/*
-static float accel_sel[][2] = {
-    {2, 16384},
-    {4, 8192},
-    {8, 4096},
-    {16, 2048}
-};
 
-static float gyro_sel[][2] = {
-    {250, 131},
-    {500, 65.5},
-    {1000, 32.8},
-    {2000, 16.4}
-};
-*/
+/*Funciones para habilitar el driver, desabilitar y resetear.*/
 static void mpu6050_enable(struct mpu6050_data *mpu6050)
 {
     struct i2c_client *client = mpu6050->client;
@@ -191,6 +192,8 @@ static void mpu6050_dump_all(struct mpu6050_data *mpu6050)
             mpu6050->accel.z.value, mpu6050->temp_s.value);
 }
 
+
+/*Cola de trabajo*/
 static void mpu6050_work(struct work_struct *work)
 {
     //int ret;
@@ -206,6 +209,9 @@ static void mpu6050_work(struct work_struct *work)
     schedule_delayed_work(&mpu6050->work,
             msecs_to_jiffies(mpu6050->delay_ms));
 }
+
+
+/*En la funcion probe se registra el driver, si no está tiene control de errores*/
 
 static int mpu6050_probe(struct i2c_client *client,
         const struct i2c_device_id *id)
@@ -258,7 +264,7 @@ free_all:
 static int mpu6050_remove(struct i2c_client *client)
 {
     struct mpu6050_data *mpu6050 = i2c_get_clientdata(client);
-
+    /*liberamos todo en la funcion remove*/
     mpu6050_disable(mpu6050);
     cancel_delayed_work(&mpu6050->work);
     kfree(mpu6050);
@@ -268,7 +274,7 @@ static int mpu6050_remove(struct i2c_client *client)
 }
 
 static struct i2c_device_id mpu6050_ids[] = {
-    {SENSOR_NAME, 0},
+    {SENSOR_NAME, 0}, /*En este caso por que solo tenemos uno solo*/
     { },
 };
 
