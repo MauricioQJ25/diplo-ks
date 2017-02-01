@@ -103,8 +103,12 @@ En un archivo de cabecera se definen, los que usé para escribir el driver.<br /
 ####Modinfo
 ![alt tag](https://github.com/MauricioQJ25/diplo-ks/blob/Pfinal/05-final/MQuijada_Accelerometer/ImagenesProyecto/modinfo.png)
 
-####rmmoddriver
+####rmmod driver (**observe la última linea**) 
 ![alt tag](https://github.com/MauricioQJ25/diplo-ks/blob/Pfinal/05-final/MQuijada_Accelerometer/ImagenesProyecto/rmmoddriver.png)
+
+####Trabajo futuro
+Instanciar cada uno de las mediciones en /dev/mpu6050 como atributos, mediciones de aceleración, temperatura, frecuencia de muestreo etc.
+
 ###Referencias
 
 Coloco todas las referencias que me fueron útiles, pero en general todo se puede encontrar en la documentación del Kernel.<br />
