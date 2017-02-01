@@ -1,3 +1,4 @@
+/*Ejecutar este programa despues del driver*/
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/i2c.h>
