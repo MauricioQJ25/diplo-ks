@@ -1,50 +1,41 @@
 #Proyecto final del módulo Espacio de Kernel
-<br />
+###Nombre: Mauricio Quijada Jiménez
 ##Creacion de un Driver de I2C para el acelerómetro mpu6050 en la RaspberryPi 3
-<br />
+
 Contenido de la carpeta:<br />
-<br />
-		src/ 			*Contienen el codigo fuente del driver*<br />
+
+	src/ 			*Contienen el codigo fuente del driver*<br />
         proyectoRedes/ 	*Contiene información relativa al proyecto de Redes*<br />
-		imagprueba/ 	*Contiene imagenes que prueban el funcionamiento del driver*<br />
-<br />
-<br />
-<br />
+	imagprueba/ 	*Contiene imagenes que prueban el funcionamiento del driver*<br />
+
 ###Resumen
-<br />
+
 El driver tiene como objetivo leer los registros de temperatura, aceleración y orientación del mpu6050, <br />
 además de escribir en el registro de *POWER MANAGEMENT* para activar o poner al dispositivo en *stand by*.<br />
-<br />
+
 ####¿Qué es I2C?
-<br />
+
 I2C es un bus de comunicaciones entre circuitos integrados desarrollado por Phillips Semiconductors (ahora NXP Semiconductors). <br />
 Se trata de un bus muy sencillo con solo dos hilos:<br />
-<br />
-<br />
+
     línea de datos (SDA) #pin 3 de la RaspberryPi3<br />
     línea de reloj (SCL) #pin 4 de la RaspberryPi4<br />
-<br />
-    http://pinout.xyz/ *liga a GPIO de la RaspberryPi3*<br />
-<br />
-    Además el dispositivo se debe conectar 3.3[V] y GND.<br />
-<br />
+
+    http://pinout.xyz/  *liga a GPIO de la RaspberryPi3*<br />
+
+   Además el dispositivo se debe conectar 3.3[V] y GND:<br />
+
     PWR 3.3[V]	#pin 1 de la RaspberryPi3<br />
     GND 0.0[V]	#pin 5 de la RaspberryPi3<br />
-<br />
-<br />
-<br />
+
 Se pueden realizar transmisiones serie bidireccionales de hasta 100 kbit/s en modo estándar y 400 kbit/s en modo rápido.<br />
 Las versiones más modernas de I2C incorporan modos con mayores tasas de transferencia (hasta 5Mbit/s)<br />
 pero el procesador de la Raspberry Pi no los implementa.<br />
-<br />
 El bus requiere de un maestro y un esclavo, solamente el maestro puede iniciar la transacción de datos <br />
 y el esclavo puede replicar la transacción  iniciada por el maestro.<br />
-<br />
 En sistemas Linux el controlador I2C embebido en el procesador es tipicamente el maestro que controla el bus.<br />
-<br />
 Cada esclavo es identificado por una unica dirección I2C. Cada transacción iniciada por el maestro contiene la dirección<br />
 del esclavo, lo cual permite reconocer cual replicará la transacción.<br />
-<br />
 En la siguiente imágen se puede observar el bus de I2C.<br />
 <br />
 [imagen de I2C]<br />
