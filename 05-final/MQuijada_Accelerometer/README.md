@@ -4,7 +4,7 @@
 
 Contenido de la carpeta:<br />
 
-	src/ 			*Contienen el codigo fuente del driver*<br />
+	src/ 		*Contienen el codigo fuente del driver*
         proyectoRedes/ 	*Contiene información relativa al proyecto de Redes*<br />
 	imagprueba/ 	*Contiene imagenes que prueban el funcionamiento del driver*<br />
 
